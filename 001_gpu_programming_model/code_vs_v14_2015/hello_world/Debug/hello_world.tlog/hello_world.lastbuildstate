@@ -1,2 +1,0 @@
-#TargetFrameworkVersion=v4.0:PlatformToolSet=v140:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=8.1
-Debug|Win32|C:\Users\user\Documents\Visual Studio 2015\Projects\parallel_computing_studies\001_gpu_programming_model\code_vs_v14_2015\hello_world\|
