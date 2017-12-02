@@ -25,6 +25,10 @@ A basic CUDA program structure consists basically of three parts
 
 	cudaFree(dev_a);
 
+# Main difference between blocks and threads
+
+Unlike parallel blocks, parallel **threads have mechanism to communicate and synchronize**, see `003_synchronization_example` for a demonstration or read `Introduction to CUDA C slides` for a deeper explanation of the sychronization example.
+
 # Student notes
 
 The class notes here presented are not of my property except the exercices development and some additional notes added to professor slides, the class notes slides are here just for future fast reference purpouse and were extracted from Intro to Parallel Programming in collaboration with Nvidia© that is free available at Udacity©.
