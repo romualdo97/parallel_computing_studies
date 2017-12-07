@@ -6,3 +6,8 @@ obj/
 *.pdb
 *.ilk
 *.exp
+*.obj
+*.log
+*.tlog
+*.cache
+*.deps
