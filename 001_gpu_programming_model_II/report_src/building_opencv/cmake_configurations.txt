@@ -1,0 +1,45 @@
+iteracion 1
+Solucion que genera solo el core de OpenCV
+
+WITH_X : 
+	DISABLE ALL
+
+ENABLE
+	ENABLE SOLUTION_FOLDERS
+	DISABLE SOLUTION_PYLINT
+BUILD
+	DISABLE BUILD_DOCS
+	DISABLE SHARED_LIBS
+	DISABLE IPP_IW
+	DISABLE ITT
+	DISABLE JASPER
+	DISABLE JAVA
+	DISABLE JPEG
+	DISABLE OPENEXR
+	DISABLE PACKAGE
+	DISABLE PERF_TEST
+	DISABLE PNG
+	DISABLE PROTOBUF
+	DISABLE TESTS
+	DISABLE TIFF
+	DISABLE WITH_DEBUG_INFO
+	DISABLE WITH_STATIC_CRT
+	DISABLE ZLIB
+	DISABLE opencv_apps
+	DISABLE	opencv_calib3d
+	DISABLE opencv_cudaarithm
+	DISABLE opencv_cudabgsegm
+	DISABLE opencv_cudacodec
+	DISABLE opencv_cudafeatures2d
+	DISABLE opencv_cudafilters
+	DISABLE opencv_cudaimgproc
+	DISABLE opencv_cudalegacy
+	DISABLE opencv_cudaobjdetect
+	DISABLE opencv_cudaoptflow
+	DISABLE opencv_cudastereo
+	DISABLE opencv_cudawarping
+	DISABLE opencv_cudev
+	DISABLE opencv_dnn
+	DISABLE opencv_features2d
+	DISABLE opencv_flann
+	
