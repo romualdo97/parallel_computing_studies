@@ -1,0 +1,37 @@
+The method "void cv::namedWindow(const cv::Strings, int)" of OpenCV highgui module is showing me the error "Can't find the name of Intel ICD OpenGL driver"
+
+Original installed driver: 21.20.16.4550
+
+Link for dell graphic driver 20.19.15.4454
+http://www.dell.com/support/home/co/es/cobsdt1/Drivers/DriversDetails?driverId=4TYM7
+
+My integrated graphic card is an Intel HD Graphics 530
+
+Forzar instalación de drivers en Windows
+http://www.tecnoent.com/1817-forzar-instalacion-driver-windows
+
+How stop windows 10 from automatically installing device drivers
+which will allow you to perform the windows update right click search for drivers from within the devices properties or in device manager, manually, which you cannot do with the other option enabled.
+http://www.tomshardware.com/faq/id-2763685/stop-windows-automatically-updating-device-drivers.html
+
+Clean graphics driver install windows
+http://www.tomshardware.com/faq/id-2767677/clean-graphics-driver-install-windows.html
+
+[FORUM] Can't find the name of the Intel ICD OpenGL driver?
+https://communities.intel.com/thread/110921
+
+	- The boy was having my same error box, he solved it by downgrading graphic driver from 21.20.16.4574 to 20.19.15.4454
+
+	- The answer says: Version 21.20.16.4574 is not a driver that was released by Intel. (it seems that is a dell graphic driver)
+
+	- The answer suggest to install a beta intel driver 15.45.12.4552
+https://downloadcenter.intel.com/download/26464/Intel-Graphics-Beta-Driver-15-45-
+
+	- They also suggest install the latest intel driver 15.45.14.4590 https://downloadcenter.intel.com/download/26563/Graphics-Intel-Graphics-Driver-for-Windows-15-45-?product=88345
+
+[FORUM] Cant update GL52VW to latest intel hd 530 drivers drivershttps://rog.asus.com/forum/showthread.php?91271-Cant-update-to-latest-intel-hd-530-drivers
+
+	- download zipped version of a driver and install manually using device manager
+
+DELL DRIVERS FOLDER FOR MANUAL INSTALLER
+C:\ProgramData\Dell\drivers\Video_Driver_4TYM7_WN32_20.19.15.4454_A07

@@ -1,0 +1,5 @@
+Sea 200 el 72% de k
+¿cual es el 100% de k?
+
+k*72% = 200
+k = 200 / 0.72 = 278 (el 100% de k es 278 si el 72% de k es 200)

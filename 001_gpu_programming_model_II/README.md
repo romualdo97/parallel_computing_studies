@@ -88,7 +88,7 @@ Set an enviroment variable called `QTDIR` into your QT extracted folder.
 
 	setx -m QTDIR D:\opencv-master\dep\qt-everywhere-opensource-src-5.9.1
 
-If you don´t want usea the visual studio prompt you could also **right click on my pc > advanced system configuration > enviroment variables**  and under system variables (not user variables) click new and set its respective name to `QTDIR` and value to your extracted QT extracted folder.
+If you don´t want usea the visual studio prompt you could also **right click on my pc > advanced system configuration > enviroment variables**  and under system variables (not user variables) click new and set its respective name to `QTDIR` and value to your extracted QT folder.
 
 ### **step 11** Set `qtbase/bin` folder into `path`
 
@@ -96,7 +96,7 @@ If you don´t want usea the visual studio prompt you could also **right click on
 
 ### **step 12** Configuring CMake for build VisualStudio solution
 
-![enter image description here](https://i.imgur.com/uSt6H5y.png)
+![enter image description here](https://i.imgur.com/2kB0GtF.png)
 
 If you are having a problem of type.
 
@@ -117,9 +117,11 @@ For now let´s ignore this and let´s focus our attention in selecting the Group
 
 ### **step 13** Configuring CMake for build VisualStudio solution, again!
 
-Now you should see a list of grouped options like this below,
+Now you should see a list of grouped options like this below.
 
-# [here tell how configure cmake]
+![enter image description here](https://i.imgur.com/kzGAsvr.png)
+
+# [here tell how configure cmake and image of compilation]
 
 ### **step 14** Grouping dependencies
 
@@ -127,17 +129,43 @@ Now that we have compiled all the needed opencv modules for run our hello world 
 
 I will use `C:\Users\user\Dropbox\AdditionalLibraries\OpenCV`, there I will create a folder for the includes called `include` and a folder for the static libraries called `lib`
 
-Into our `include` I will paste the following folders (the folder not the files inside it)
+Into our `include` I will paste the following folders
+
+- `D:\opencv-master\build\vs_14_2015\opencv2`
 
 - `D:\opencv-master\include\opencv2` 
 
 - `D:\opencv-master\modules\core\include\opencv2`
 
+- `D:\opencv-master\modules\highgui\include\opencv2`
+
+- `D:\opencv-master\modules\imgcodecs\include\opencv2`
+
+- `D:\opencv-master\modules\imgproc\include\opencv2`
+
+- `D:\opencv-master\3rdparty\zlib`
+
 Into our `lib` folder I wil create a folder called `Debug` and inside it I will paste the following files located at `D:\opencv-master\build\vs_14_2015\lib\Debug`.
 
 - `opencv_core331d.lib` 
 
-# [terminar de escribir esto]
+- `opencv_highgui331d.lib`
+
+- `opencv_imgcodecs331d.lib`
+
+- `opencv_imgproc331d.lib`
+
+And the following located at: 
+`D:\opencv-master\build\vs_14_2015\3rdparty\lib\Debug`
+
+- `zlibd.lib`
+
+# [terminar de escribir esto, solve qt linking errors ]
+> **How do i use Qt in my Visual Studio 2015 projects?**
+https://stackoverflow.com/questions/32894097/how-do-i-use-qt-in-my-visual-studio-2015-projects
+> **How to setup Qt and openCV on Windows**
+https://wiki.qt.io/How_to_setup_Qt_and_openCV_on_Windows
+> search tag **link qt to visual studio 2015**
 
 ### **step 15** Create `OPENCV_DIR` enviroment variable
 
