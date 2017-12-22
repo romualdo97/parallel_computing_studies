@@ -3,12 +3,12 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <IncludePath>$(OPENCV_DIR)include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(OPENCV_DIR)lib\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(OPENCV_DIR)include;$(QTDIR)\qtbase\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(OPENCV_DIR)lib\Debug;$(QTDIR)\qtbase\lib;$(QTDIR)\qtbase\plugins\platforms;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>
-      <AdditionalDependencies>opencv_core331d.lib;opencv_highgui331d.lib;opencv_imgcodecs331d.lib;opencv_imgproc331d.lib;zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opencv_core331d.lib;opencv_highgui331d.lib;opencv_imgcodecs331d.lib;opencv_imgproc331d.lib;zlibd.lib;libjasperd.lib;libjpegd.lib;libpngd.lib;libtiffd.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5Testd.lib;Qt5Widgetsd.lib;qdirect2d.lib;qdirect2dd.lib;qminimal.lib;qminimald.lib;qoffscreen.lib;qoffscreend.lib;qwindows.lib;qwindowsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup />

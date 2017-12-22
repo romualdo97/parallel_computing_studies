@@ -122,7 +122,16 @@ RESULT
 ==============================================================
 
 iteracion 4
-Para compilar highgui se necesita incluir los modulos imgcodecs e imgproc de opencv
+- Para compilar highgui se necesita incluir los modulos imgcodecs e imgproc de opencv
+- imgread no esta cargando las imagenes
+- la funcion namedWindow produce 624 errores del tipo LNK2019 y LNK2001, el primero que muestra es el siguiente
+	Error	LNK2019	unresolved external symbol 
+	"__declspec(dllimport) void __cdecl qt_assert(char const *,char const *,int)" 
+	
+	(__imp_?qt_assert@@YAXPBD0H@Z) referenced in function
+	"public: __thiscall QtSharedPointer::ExternalRefCountData::~ExternalRefCountData(void)" (??1ExternalRefCountData@QtSharedPointer@@QAE@XZ)	002_hello_opencv 
+	C:\Users\user\Documents\Visual Studio 2015\Projects\parallel_computing_studies\001_gpu_programming_model_II\code_vs_v14_2015\002_hello_opencv\opencv_highgui331d.lib(window_QT.obj)	1	
+
 
 WITH:
 	ENABLE_ONLY:
@@ -149,3 +158,222 @@ RESULT
 		opencv_highgui331d.lib
 		opencv_imgcodecs331d.lib
 		opencv_imgproc331d.lib
+
+
+==============================================================
+
+iteracion 5
+https://wiki.qt.io/How_to_setup_Qt_and_openCV_on_Windows
+- Durante la compilacion se obtiene el error:
+	Error	C2065	'GL_PERSPECTIVE_CORRECTION_HINT': identificador no declarado	opencv_highgui	D:\opencv-master\modules\highgui\src\window_QT.cpp	3194
+No se pudo compilar correctamente el modulo highgui, los otros modulos no tuvieron problema	
+
+
+WITH:
+	ENABLE_ONLY:
+		OPENGL
+		QT
+
+ENABLE:
+	ENABLE_ONLY:
+		PRECOMPILED_HEADERS
+		SOLUTION_FOLDERS
+	
+BUILD:	
+	ENABLE_ONLY:
+		opencv_core
+			ZLIB
+		opencv_highgui
+			opencv_imgcodecs
+			opencv_imgproc
+		opencv_features2d
+
+RESULT
+	3rdparty\lib\Debug\
+		zlibd.lib
+	lib\Debug\
+		opencv_core331d.lib
+		opencv_features2d331d.lib
+		opencv_imgcodecs331d.lib
+		opencv_imgproc331d.lib
+
+==============================================================
+
+iteracion 6
+https://wiki.qt.io/How_to_setup_Qt_and_openCV_on_Windows
+- Durante la compilacion se obtiene el error:
+	Error	C2065	'GL_PERSPECTIVE_CORRECTION_HINT': identificador no declarado	opencv_highgui	D:\opencv-master\modules\highgui\src\window_QT.cpp	3194
+No se pudo compilar correctamente el modulo highgui, los otros modulos no tuvieron problema	
+
+
+WITH:
+	ENABLE_ONLY:
+		OPENGL
+		QT
+
+ENABLE:
+	ENABLE_ONLY:
+		PRECOMPILED_HEADERS
+		SOLUTION_FOLDERS
+	
+BUILD:	
+	ENABLE_ONLY:
+		opencv_core
+			ZLIB
+		opencv_highgui
+			opencv_imgcodecs
+			opencv_imgproc
+		opencv_features2d
+		opencv_calib3d
+
+RESULT
+	3rdparty\lib\Debug\
+		zlibd.lib
+	lib\Debug\
+		opencv_calib3d331d.lib
+		opencv_core331d.lib
+		opencv_features2d331d.lib
+		opencv_imgcodecs331d.lib
+		opencv_imgproc331d.lib
+
+==============================================================
+
+iteracion 7
+https://wiki.qt.io/How_to_setup_Qt_and_openCV_on_Windows
+No se solucionó ningun error de los 624 errores detectados durante la compilacion del hello world en la iteracion 4
+
+
+WITH:
+	ENABLE_ONLY:
+		QT
+
+ENABLE:
+	ENABLE_ONLY:
+		PRECOMPILED_HEADERS
+		SOLUTION_FOLDERS
+	
+BUILD:	
+	ENABLE_ONLY:
+		opencv_core
+			ZLIB
+		opencv_highgui
+			opencv_imgcodecs
+			opencv_imgproc
+		opencv_features2d
+		opencv_calib3d
+
+RESULT
+	3rdparty\lib\Debug\
+		zlibd.lib
+	lib\Debug\
+		opencv_calib3d331d.lib
+		opencv_core331d.lib
+		opencv_features2d331d.lib
+		opencv_highgui331d.lib
+		opencv_imgcodecs331d.lib
+		opencv_imgproc331d.lib
+
+
+==============================================================
+
+iteracion 8
+Compilando las librerias basicas necesarias y 3dparty modulos para leer imagenes jpg y png ademas del bmp, nel resultado de lasiguiente build no permite leer las imagenes jpg aun--
+
+WITH:
+	ENABLE_ONLY:
+		WITH_QT
+		WITH_PNG
+		WITH_JPEG
+
+ENABLE:
+	ENABLE_ONLY:
+		ENABLE_PRECOMPILED_HEADERS
+		ENABLE_SOLUTION_FOLDERS
+	
+BUILD:	
+	ENABLE_ONLY:
+		BUILD_opencv_core
+			BUILD_ZLIB
+		BUILD_opencv_highgui
+			BUILD_opencv_imgcodecs
+			BUILD_opencv_imgproc
+		BUILD_PNG
+		BUILD_JPEG
+
+RESULT
+	3rdparty\lib\Debug\
+		zlibd.lib
+		libjpegd.lib
+		libpngd.lib
+	lib\Debug\
+		opencv_core331d.lib
+		opencv_highgui331d.lib
+		opencv_imgcodecs331d.lib
+		opencv_imgproc331d.lib
+
+==============================================================
+
+iteracion 9
+Aun no se logra hacer que imgread lea imagenes jpg
+
+WITH:
+	ENABLE_ONLY:
+		WITH_QT
+		WITH_PNG
+		WITH_JPEG
+		WITH_JASPER
+		WITH_TIFF
+
+ENABLE:
+	ENABLE_ONLY:
+		ENABLE_PRECOMPILED_HEADERS
+		ENABLE_SOLUTION_FOLDERS
+	
+BUILD:	
+	ENABLE_ONLY:
+		BUILD_opencv_core
+			BUILD_ZLIB
+		BUILD_opencv_highgui
+			BUILD_opencv_imgcodecs
+			BUILD_opencv_imgproc
+		BUILD_PNG
+		BUILD_JPEG
+		BUILD_JASPER
+		BUILD_TIFF
+
+RESULT
+	3rdparty\lib\Debug\
+		zlibd.lib
+		libjpegd.lib
+		libpngd.lib
+	lib\Debug\
+		opencv_core331d.lib
+		opencv_highgui331d.lib
+		opencv_imgcodecs331d.lib
+		opencv_imgproc331d.lib
+
+==============================================================
+
+# Additional dependencies of HelloWorld opencv project
+
+Agregar al linker del opencv_helloworld las siguientes librerias
+
+QtCored.lib redujo los erreros de 624 a 423
+
+Qt5Guid.lib redujo los errores de 423 a 333
+
+Qt5Testd.lib redujo los errores de 333 a 332
+
+Qt5Widgetsd.lib redujo los errores de 332 a 0
+
+==============================================================
+This application failed to start because it could not find or load the Qt platform plugin "windows"
+in "".
+estas librerias solucionan el problema anterior cuando se ejecuta el metodo namedWindow?
+
+Qt5Concurrent
+Qt5Core * 
+Qt5Gui *
+Qt5Opengl
+Qt5Test *
+Qt5Widgets *

@@ -1,0 +1,31 @@
+El error ocurre cuando ejecuto el metodo namedWindow de opencv
+program:
+D:\qt-everywhere-opensource-src-5.9\qtbase\bin\Qt5Cored.dll
+Module: 5.9.1
+File: kernel\qguiapplicationi.cpp
+Line 1148
+
+This application failed to start because it could not find or load the Qt platform plugin "windows" in ""
+
+Reinstalling the application may fiz this problem.
+
+==============================================================
+
+Trying to link libraries at $(QTDIR)\qtbase\plugins\platforms
+
+qdirect2d.lib
+qdirect2dd.lib
+qminimal.lib
+qminimald.lib
+qoffscreen.lib
+qoffscreend.lib
+qwindows.lib
+qwindowsd.lib
+
+CONITINUE READING 
+http://wiki.qt.io/Deploy_an_Application_on_Windows
+
+https://forum.qt.io/topic/43205/failed-to-start-because-it-could-not-find-or-load-the-qt-platform-plugin-windows
+
+search keyword 
+	This application failed to start because it could not find or load the Qt platform plugin "windows" in "".
