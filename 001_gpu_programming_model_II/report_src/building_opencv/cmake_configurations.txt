@@ -371,7 +371,7 @@ This application failed to start because it could not find or load the Qt platfo
 in "".
 estas librerias solucionan el problema anterior cuando se ejecuta el metodo namedWindow?
 
-Qt5Concurrent
+Qt5Concurrent *
 Qt5Core * 
 Qt5Gui *
 Qt5Opengl

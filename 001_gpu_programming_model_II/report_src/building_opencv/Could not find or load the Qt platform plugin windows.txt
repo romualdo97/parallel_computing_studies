@@ -7,9 +7,10 @@ Line 1148
 
 This application failed to start because it could not find or load the Qt platform plugin "windows" in ""
 
-Reinstalling the application may fiz this problem.
+Reinstalling the application may fix this problem.
 
 ==============================================================
+27/12/2017
 
 Trying to link libraries at $(QTDIR)\qtbase\plugins\platforms
 
@@ -22,6 +23,11 @@ qoffscreend.lib
 qwindows.lib
 qwindowsd.lib
 
+RESULT: Not solved
+STATUS: Not removed from project
+
+================================================================
+
 CONITINUE READING 
 http://wiki.qt.io/Deploy_an_Application_on_Windows
 
@@ -29,3 +35,61 @@ https://forum.qt.io/topic/43205/failed-to-start-because-it-could-not-find-or-loa
 
 search keyword 
 	This application failed to start because it could not find or load the Qt platform plugin "windows" in "".
+
+¿Será necesario cargar archivos de codigo fuente al proyecoto en visual studio?
+
+¿Se soluciona el problema si pego todos los dll's de qtbase en el directorio del proyecto?
+
+================================================================
+27/12/2017
+
+Trying to add additionl include directories located at:
+$(QTDIR)\qtbase\mkspecs
+
+$(QTDIR)\qtbase\mkspecs\win32-msvc
+$(QTDIR)\qtbase\mkspecs\
+
+RESULT: Not solved
+STATUS: Not removed from project
+
+================================================================
+27/12/2017
+From http://doc.qt.io/qt-5/windows-deployment.html
+Checking QT5 necesary DLL´s for run the "Plug & Paint" application
+
+The Basic Tools plugin
+	plugins\pnp_basictools.dll
+	
+	located without .dll (just as .lib) at:
+	$(QTDIR)\qtbase\examples\widgets\tools\plugandpaint\plugins
+	action: linking pnp_basictoolsd.lib
+
+RESULT: Not solved
+STATUS: Not removed from project and test not completed on suspicion of not working since i actually need mores .dll files than those that ilestres the tutorial.
+
+================================================================
+27/12/2017
+From https://docs.opencv.org/3.0-beta/doc/tutorials/introduction/windows_install/windows_install.html
+The article proposes that everywhere you want to use a .dll is necesary to add dll bin folder to the system path
+
+Trying to add dll directory at $(QTDIR)\qtbase\plugins\platforms to the system Path
+
+RESULT: Not solved
+STATUS: System path not removed.
+
+================================================================
+27/12/2017
+from https://gist.github.com/BartG95/1ce8ba1e9c25ec3698d1
+
+Trying to follow proposed steps (mainly the link suggestions in "test" section)
+
+RESULT: ------------
+STATUS: Not tried yet
+
+================================================================
+27/12/2017
+
+Build OpenFrameworks project with ofxOpenCV and check the property sheets and respective linkers and dependencies.
+
+RESULT: ------------
+STATUS: Not tried yet
