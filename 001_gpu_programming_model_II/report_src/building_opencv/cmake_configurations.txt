@@ -366,6 +366,11 @@ Qt5Testd.lib redujo los errores de 333 a 332
 
 Qt5Widgetsd.lib redujo los errores de 332 a 0
 
+QtCored.lib
+Qt5Guid.lib
+Qt5Testd.lib
+Qt5Widgetsd.lib
+
 ==============================================================
 This application failed to start because it could not find or load the Qt platform plugin "windows"
 in "".
@@ -377,3 +382,104 @@ Qt5Gui *
 Qt5Opengl
 Qt5Test *
 Qt5Widgets *
+
+==============================================================
+
+iteracion 10
+Building project following https://gist.github.com/BartG95/1ce8ba1e9c25ec3698d1
+
+Download dependencies:
+	TBB
+		https://github.com/01org/tbb/releases
+	Eigen (Eigen 3.3.4)
+		http://eigen.tuxfamily.org/index.php?title=Main_Page
+	OpenEXR (openexr-2.2.1.tar.gz)
+		http://www.openexr.com/downloads.html
+
+WITH:
+	ENABLE_ONLY:
+		WITH_1394
+		WITH_DIRECTX
+		WITH_DSSHOW
+		WITH_EIGEN
+		WITH_FFMPEG-----------
+		WITH_GSTREAMER
+		WITH_IPP
+		WITH_ITT
+		WITH_JASPER
+		WITH_JPEG
+		WITH_LAPACK
+		WITH_OPENEXR
+		WITH_OPENMP
+		WITH_PNG		
+		WITH_QT
+		WITH_TBB-----------
+		WITH_TIFF
+
+ENABLE:
+	ENABLE_ONLY:
+		ENABLE_PRECOMPILED_HEADERS
+		ENABLE_SOLUTION_FOLDERS
+	
+BUILD:	
+	ENABLE_ONLY:
+		BUILD_IPP_IW
+		BUILD_ITT
+		BUILD_JASPER
+		BUILD_JPEG
+		BUILD_OPENEXR
+		BUILD_PNG
+		BUILD_TBB-----------
+		BUILD_TIFF
+		BUILD_ZLIB
+		BUILD_opencv_apps
+		BUILD_opencv_calib3d
+		BUILD_opencv_core
+		BUILD_opencv_features2d
+		BUILD_opencv_flann
+		BUILD_opencv_highgui
+		BUILD_opencv_imgcodecs
+		BUILD_opencv_imgproc
+		BUILD_opencv_ml
+		BUILD_opencv_objdetect
+		BUILD_opencv_photo
+		BUILD_opencv_shape
+		BUILD_opencv_stitching
+		BUILD_opencv_superres
+		BUILD_opencv_ts
+		BUILD_opencv_video
+		BUILD_opencv_videoio
+		BUILD_opencv_videostab
+
+NOTES
+	Click configure again (it won't ask for a generator this time). Still some entries will be red. Still don't worry. One of that entries will be TBB_INCLUDE_DIRS. 
+
+	Type your TBB_ENV_INCLUDE include directory there. In my case, that's D:\opencv-master\dep\tbb2018_20171205oss\include. 
+
+	Set TBB_ENV_LIB and TBB_ENV_LIB_DEBUG to your TBB lib directory, in my case D:\opencv-master\dep\tbb2018_20171205oss\lib\intel64\vc14
+
+	Click configure again. Still some red entries? Now you have to worry, because there shouldn't be any. Check the red entries and use your brain.
+
+RESULT
+	3rdparty\lib\Debug\
+		ippiwd.lib
+	3rdparty\ippicv\ippicv_win\lib\ia32
+		ippicvmt.lib
+	lib\Debug\
+		opencv_calib3d331d.lib
+		opencv_core331d.lib
+		opencv_features2d331d.lib
+		opencv_flann331d.lib
+		opencv_highgui331d.lib
+		opencv_imgcodecs331d.lib
+		opencv_imgproc331d.lib
+		opencv_ml331d.lib
+		opencv_objdetect331d.lib
+		opencv_photo331d.lib
+		opencv_shape331d.lib
+		opencv_stitching331d.lib
+		opencv_superres331d.lib
+		opencv_ts331d.lib
+		opencv_video331d.lib
+		opencv_videoio331d.lib
+		opencv_videostab331d.lib

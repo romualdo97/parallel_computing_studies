@@ -10,7 +10,7 @@ This application failed to start because it could not find or load the Qt platfo
 Reinstalling the application may fix this problem.
 
 ==============================================================
-27/12/2017
+TEST1 - 27/12/2017
 
 Trying to link libraries at $(QTDIR)\qtbase\plugins\platforms
 
@@ -27,6 +27,7 @@ RESULT: Not solved
 STATUS: Not removed from project
 
 ================================================================
+IDEAS1
 
 CONITINUE READING 
 http://wiki.qt.io/Deploy_an_Application_on_Windows
@@ -41,7 +42,7 @@ search keyword
 ¿Se soluciona el problema si pego todos los dll's de qtbase en el directorio del proyecto?
 
 ================================================================
-27/12/2017
+TEST2 - 27/12/2017
 
 Trying to add additionl include directories located at:
 $(QTDIR)\qtbase\mkspecs
@@ -53,7 +54,8 @@ RESULT: Not solved
 STATUS: Not removed from project
 
 ================================================================
-27/12/2017
+TEST3 - 27/12/2017
+
 From http://doc.qt.io/qt-5/windows-deployment.html
 Checking QT5 necesary DLL´s for run the "Plug & Paint" application
 
@@ -68,7 +70,8 @@ RESULT: Not solved
 STATUS: Not removed from project and test not completed on suspicion of not working since i actually need mores .dll files than those that ilestres the tutorial.
 
 ================================================================
-27/12/2017
+TEST4 - 27/12/2017
+
 From https://docs.opencv.org/3.0-beta/doc/tutorials/introduction/windows_install/windows_install.html
 The article proposes that everywhere you want to use a .dll is necesary to add dll bin folder to the system path
 
@@ -78,18 +81,148 @@ RESULT: Not solved
 STATUS: System path not removed.
 
 ================================================================
-27/12/2017
+TEST5 - 27/12/2017
+
 from https://gist.github.com/BartG95/1ce8ba1e9c25ec3698d1
 
 Trying to follow proposed steps (mainly the link suggestions in "test" section)
 
-RESULT: ------------
+No tengo imgcodecs.lib, videoio.lib, shape2d.lib en el modulo opencv de openframework, parece que sera necesario intenra una compilacion por mi cuenta
+
+RESULT: Not solved
 STATUS: Not tried yet
 
 ================================================================
-27/12/2017
+TEST6 - 27/12/2017
 
 Build OpenFrameworks project with ofxOpenCV and check the property sheets and respective linkers and dependencies.
 
-RESULT: ------------
+RESULT: Not solved
 STATUS: Not tried yet
+
+==============================================================
+TEST7 - 05/01/2018
+
+Trying to link libraries at $(QTDIR)\qtbase\plugins\platforms
+and paste its respective .dll files into project dir or executable dir
+
+qwindows.lib
+qwindowsd.lib
+
+RESULT: Not solved
+STATUS: Could work, continue next test
+
+==============================================================
+IDEAS2
+
+Trying to discover mismatch depencie reading QT source coda:
+TIP: execute the program and read the "call stack"
+	
+	read this and try something -> QGuiApplicationPrivate::createPlatformIntegration()
+
+Search in google for following enviroment vars that i have no defined yet:
+	QT_QPA_PLATFORM_PLUGIN_PATH
+
+	used in void QGuiApplicationPrivate::createPlatformIntegration()
+    ...
+    QString platformPluginPath = QString::fromLocal8Bit(qgetenv("QT_QPA_PLATFORM_PLUGIN_PATH"));
+
+==============================================================
+TEST8 - 05/01/2018
+
+Trying to assign a correct path to enviroment var
+QT_QPA_PLATFORM_PLUGIN_PATH
+
+https://forum.qt.io/topic/61358/qt_qpa_platform_plugin_path-could-not-find-the-platform-plugin
+if path seems correct and problem persists restart pc.
+
+RESULT: ----------------
+STATUS: ----------------
+
+==============================================================
+TEST9 - 05/01/2018
+
+Try to link dependencies shown at following tutorial:
+http://www.bogotobogo.com/Qt/Qt5_Deploy_Windows_Plugins_Platforms_qwindows.php
+
+platforms/ (follow #TEST1 again)
+
+Qt5Core.dll
+Qt5Gui.dll
+Qt5Widgets.dll
+Qt5Test.dll
+
+RESULT: Solved!!!
+STATUS: Defining real obligatory dependencies
+
+==============================================================
+RESUME OF SOLUTION
+
+WORKFLOW IN SYSTEM
+
+set QTDIR to D:\qt-everywhere-opensource-src-5.9.1
+
+set QT_QPA_PLATFORM_PLUGIN_PATH to D:\qt-everywhere-opensource-src-5.9.1\qtbase\plugins
+
+Add to path the dir: %QTDIR%\qtbase\bin
+
+Add to path the dir: %QTDIR%\qtbase\plugins\platforms
+
+group OpenCV include dir (folders with name opencv2) into same place, in my case that folder is C:\Users\user\Dropbox\AdditionalLibraries\OpenCV\include\opencv2
+
+Set OPENCV_DIR to C:\Users\user\Dropbox\AdditionalLibraries\OpenCV\
+
+WORKFLOW IN VISUAL STUDIO
+
+VC++ Directories
+	Include Directories
+		$(OPENCV_DIR)include
+	Library Directories
+		$(OPENCV_DIR)lib\Debug
+		$(OPENCV_DIR)lib\3rdParty\Debug
+		$(QTDIR)\qtbase\lib
+		$(QTDIR)\qtbase\plugins\platforms
+
+Linker > Input
+	Additional Dependencies
+
+opencv_calib3d331d.lib
+opencv_core331d.lib
+opencv_features2d331d.lib
+opencv_flann331d.lib
+opencv_highgui331d.lib
+opencv_imgcodecs331d.lib
+opencv_imgproc331d.lib
+opencv_ml331d.lib
+opencv_objdetect331d.lib
+opencv_photo331d.lib
+opencv_shape331d.lib
+opencv_stitching331d.lib
+opencv_superres331d.lib
+opencv_ts331d.lib
+opencv_video331d.lib
+opencv_videoio331d.lib
+opencv_videostab331d.lib
+IlmImfd.lib
+ippiwd.lib
+ippicvmt.lib
+ittnotifyd.lib
+libjasperd.lib
+libjpegd.lib
+libpngd.lib
+libtiffd.lib
+zlibd.lib
+Qt5Cored.lib
+Qt5Guid.lib
+Qt5Testd.lib
+Qt5Widgetsd.lib
+qdirect2d.lib
+qdirect2dd.lib
+qminimal.lib
+qminimald.lib
+qoffscreen.lib
+qoffscreend.lib
+qwindows.lib
+qwindowsd.lib
+
+

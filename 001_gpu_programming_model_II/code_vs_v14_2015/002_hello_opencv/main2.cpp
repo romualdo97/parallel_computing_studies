@@ -1,29 +1,22 @@
-#include <opencv2\opencv.hpp>
-
-//#define SHOW_WEBCAM
+#include <opencv2\core.hpp>
+#include <opencv2\imgcodecs.hpp>
+#include <opencv2\highgui.hpp>
+#include <iostream>
 
 using namespace cv;
 using namespace std;
-
-bool showImage();
-bool showWebCam();
-
+// unlinked opencv_calib3d331d.lib
+// unlinked opencv_features2d331d.lib
 int main(int argc, char** argv)
 {
-
-#ifdef SHOW_WEBCAM
-	if (!showWebCam()) return -1;
-#else
-	if (!showImage()) return -1;
-#endif
-
-	return 0;
-}
-
-bool showImage()
-{
+	/*if (argc != 2)
+	{
+		cout << "Usage 002_hello_opencv.exe [image_to_load_and_display]\n";
+		return -1;
+	}*/
+	//cout << argv[1] << endl;
 	Mat image;
-	image = imread("1.jpg", IMREAD_COLOR); // load the image
+	image = imread("1.bmp", IMREAD_COLOR); // load the image
 	if (NULL == image.data) // check for file errors
 	{
 		/*
@@ -37,31 +30,10 @@ bool showImage()
 		traditional formats. (see the notes section of imread method)
 		*/
 		cout << "Could not open or find the file\n";
-		return false;
+		return -1;
 	}
 	namedWindow("display window", CV_WINDOW_AUTOSIZE); // Create a window for display.
-	imshow("display window", image); // Show our image inside it.
-	waitKey(0); // Wait for a keystroke in the window
-	return true;
-}
-
-bool showWebCam()
-{
-	VideoCapture cap(0);
-	if (!cap.isOpened())
-	{
-		std::cout << "Sorry, can't use webcam" << std::endl;
-		return false;
-	}
-	while (true)
-	{
-		Mat frame;
-		cap >> frame;
-		imshow("Frame", frame);
-		if (waitKey(30) == 'q')
-		{
-			break;
-		}
-	}
-	return true;
+	//imshow("display window", image); // Show our image inside it.
+	//waitKey(0); // Wait for a keystroke in the window
+	return 0;
 }
