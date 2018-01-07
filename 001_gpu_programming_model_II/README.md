@@ -167,7 +167,37 @@ Into our `lib` folder I will paste the folder `D:\opencv-master\build\vs_15_2017
 Into our `lib` folder I will create a folder called `3rdParty` and inside it I will paste the folder located at: 
 `D:\opencv-master\build\vs_15_2017\3rdparty\lib\Debug`
 
-# {show the file directory here}
+**The folder and file structure should look similar to:**
+
+	- OpenCV\  // $(OPENCV_DIR)
+		- include\  // $(OPENCV_DIR)include
+			- opencv2\
+				+ core\
+				+ highgui\
+				+ imgcodecs\
+				+ imgproc\
+				core.hpp
+				cvconfig.hpp
+				highgui.hpp
+				imgcodecs.hpp
+				imgproc.hpp
+				opencv.hpp
+				opencv_modules.hpp
+		- lib\  // $(OPENCV_DIR)lib
+			- Debug\  // $(OPENCV_DIR)lib\Debug
+				opencv_core331d.lib
+				opencv_core331d.pdb
+				opencv_highgui331d.lib
+				opencv_highgui331d.pdb
+				opencv_imgcodecs331d.lib
+				opencv_imgcodecs331d.pdb
+				opencv_imgproc331d.lib
+				opencv_imgproc331d.pdb
+			- 3rdParty\
+				- Debug\ // $(OPENCV_DIR)lib\3rdParty\Debug
+					zlibd.lib
+					zlibd.pdb
+	
 
 ### **STEP 16)** Create `OPENCV_DIR` enviroment variable
 
