@@ -1,6 +1,6 @@
-# Building OpenCV and running Hello World Example in 2017 - 2018
+# Building OpenCV and running Hello World Example in 2018
 
-In this tutorial we’re going to learn how to build OpenCV 3.3 static libraries from source code and setup our visual studio 2015 solution for run the below OpenCV hello world code.
+In this tutorial we’re going to learn how to build OpenCV 3.3 static libraries from source code and setup our visual studio 2017 solution for run the below OpenCV hello world code.
 
 We will do this for the **problem set 1** of **Introduction to Parallel Programming course** at Udacity, but this material is also useful as reference or tutorial explaining the process of building OpenCV and running the HelloWorld application from scratch in windows systems.
 
