@@ -162,16 +162,16 @@ Into our `include` I will paste the following folders
 
 - `D:\opencv-master\modules\imgproc\include\opencv2`
 
-- `D:\opencv-master\3rdparty\zlib`
-
 Into our `lib` folder I will paste the folder `D:\opencv-master\build\vs_15_2017\lib\Debug`.
 
 Into our `lib` folder I will create a folder called `3rdParty` and inside it I will paste the folder located at: 
 `D:\opencv-master\build\vs_15_2017\3rdparty\lib\Debug`
 
+# {show the file directory here}
+
 ### **STEP 16)** Create `OPENCV_DIR` enviroment variable
 
-For tell our visual studio solution where are our OpenCV dependencie let´s create a enviroment variable pointing to rhe folder where we grouped our lib and include files.
+Tell our visual studio solution where are our OpenCV dependencie let´s creating an enviroment variable pointing to the folder where we grouped our lib and include files.
 in cmd write:
 
 	> setx -m OPENCV_DIR C:\Users\user\Dropbox\AdditionalLibraries\OpenCV
