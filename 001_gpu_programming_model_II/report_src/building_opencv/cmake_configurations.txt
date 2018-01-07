@@ -358,7 +358,7 @@ RESULT
 
 Agregar al linker del opencv_helloworld las siguientes librerias
 
-QtCored.lib redujo los erreros de 624 a 423
+Qt5Cored.lib redujo los erreros de 624 a 423
 
 Qt5Guid.lib redujo los errores de 423 a 333
 
@@ -366,7 +366,7 @@ Qt5Testd.lib redujo los errores de 333 a 332
 
 Qt5Widgetsd.lib redujo los errores de 332 a 0
 
-QtCored.lib
+Qt5Cored.lib
 Qt5Guid.lib
 Qt5Testd.lib
 Qt5Widgetsd.lib
@@ -387,6 +387,12 @@ Qt5Widgets *
 
 iteracion 10
 Building project following https://gist.github.com/BartG95/1ce8ba1e9c25ec3698d1
+
+No solucionó el error:
+	This application failed to start because it could not find or load the Qt platform plugin "windows"
+	in "".
+
+Reinstalling the application may fix this problem.
 
 Download dependencies:
 	TBB
@@ -483,3 +489,45 @@ RESULT
 		opencv_video331d.lib
 		opencv_videoio331d.lib
 		opencv_videostab331d.lib
+
+
+======================================================
+todas las librerias
+opencv_calib3d331d.lib
+opencv_core331d.lib
+opencv_features2d331d.lib
+opencv_flann331d.lib
+opencv_highgui331d.lib
+opencv_imgcodecs331d.lib
+opencv_imgproc331d.lib
+opencv_ml331d.lib
+opencv_objdetect331d.lib
+opencv_photo331d.lib
+opencv_shape331d.lib
+opencv_stitching331d.lib
+opencv_superres331d.lib
+opencv_ts331d.lib
+opencv_video331d.lib
+opencv_videoio331d.lib
+opencv_videostab331d.lib
+IlmImfd.lib
+ippiwd.lib
+ippicvmt.lib
+ittnotifyd.lib
+libjasperd.lib
+libjpegd.lib
+libpngd.lib
+libtiffd.lib
+zlibd.lib
+Qt5Cored.lib
+Qt5Guid.lib
+Qt5Testd.lib
+Qt5Widgetsd.lib
+qdirect2d.lib
+qdirect2dd.lib
+qminimal.lib
+qminimald.lib
+qoffscreen.lib
+qoffscreend.lib
+qwindows.lib
+qwindowsd.lib

@@ -1,6 +1,6 @@
 #include <opencv2\opencv.hpp>
 
-//#define SHOW_WEBCAM
+#define SHOW_WEBCAM
 
 using namespace cv;
 using namespace std;

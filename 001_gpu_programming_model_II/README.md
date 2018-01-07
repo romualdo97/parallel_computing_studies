@@ -76,19 +76,25 @@ QT has many modules, but for compile OpenCV Highgui module we just need to compi
 
 Then accept the **licence offer** typing `y` and enter.
 
+> **When configuration error occurs:** run `nmake confclean` and run `configure` again.
+
 ### **step 9** Build QT
 
 Enter the next command for compile `qtbase` module.
 
 	> nmake
 
-### **step 10** Set QTDIR enviroment variable
+### **step 10** Set QT enviroment variables
 
-Set an enviroment variable called `QTDIR` into your QT extracted folder.
+Set an enviroment variable called `QTDIR` pointing to your QT extracted folder.
 
 	setx -m QTDIR D:\opencv-master\dep\qt-everywhere-opensource-src-5.9.1
 
-If you don´t want usea the visual studio prompt you could also **right click on my pc > advanced system configuration > enviroment variables**  and under system variables (not user variables) click new and set its respective name to `QTDIR` and value to your extracted QT folder.
+Set another enviroment variable called `QT_QPA_PLATFORM_PLUGIN_PATH`pointing to your `qt\qtbase\plugins` folder
+
+	setx -m QT_QPA_PLATFORM_PLUGIN_PATH D:\opencv-master\dep\qt-everywhere-opensource-src-5.9.1\qtbase\plugins
+
+If you don´t want use the visual studio prompt you could also **right click on my pc > advanced system configuration > enviroment variables**  and under system variables (not user variables) click new and set its respective name to `QTDIR` and value to your extracted QT folder.
 
 ### **step 11** Set `qtbase/bin` folder into `path`
 
@@ -121,7 +127,29 @@ Now you should see a list of grouped options like this below.
 
 ![enter image description here](https://i.imgur.com/kzGAsvr.png)
 
-# [here tell how configure cmake and image of compilation]
+The following is the basic CMake configuration for generate the essential depencies needed in the hello world code.
+
+Also note that following OpenCV configuration will be able to read just images with `.bmp` format, I think you can play with configuration from this point.
+
+**Check only the following options:** What is not mentioned here should be unchecked (just modify the groups mentioned).
+
+	WITH:
+		WITH_QT
+	
+	ENABLE:
+		ENABLE_PRECOMPILED_HEADERS
+		ENABLE_SOLUTION_FOLDERS
+	
+	BUILD:	
+		BUILD_opencv_core
+		BUILD_ZLIB
+		BUILD_opencv_highgui
+		BUILD_opencv_imgcodecs
+		BUILD_opencv_imgproc
+
+Then go to your `build\vs_15_2017` folder and open `OpenCV.sln` for **compile the solution.** (sorry my vs2017 is in spanish)
+
+![enter image description here](https://i.imgur.com/boWegJv.png)
 
 ### **step 14** Grouping dependencies
 
@@ -131,7 +159,7 @@ I will use `C:\Users\user\Dropbox\AdditionalLibraries\OpenCV`, there I will crea
 
 Into our `include` I will paste the following folders
 
-- `D:\opencv-master\build\vs_14_2015\opencv2`
+- `D:\opencv-master\build\vs_15_2017\opencv2`
 
 - `D:\opencv-master\include\opencv2` 
 
@@ -145,27 +173,10 @@ Into our `include` I will paste the following folders
 
 - `D:\opencv-master\3rdparty\zlib`
 
-Into our `lib` folder I wil create a folder called `Debug` and inside it I will paste the following files located at `D:\opencv-master\build\vs_14_2015\lib\Debug`.
+Into our `lib` folder I will paste the folder `D:\opencv-master\build\vs_15_2017\lib\Debug`.
 
-- `opencv_core331d.lib` 
-
-- `opencv_highgui331d.lib`
-
-- `opencv_imgcodecs331d.lib`
-
-- `opencv_imgproc331d.lib`
-
-And the following located at: 
-`D:\opencv-master\build\vs_14_2015\3rdparty\lib\Debug`
-
-- `zlibd.lib`
-
-# [terminar de escribir esto, solve qt linking errors ]
-> **How do i use Qt in my Visual Studio 2015 projects?**
-https://stackoverflow.com/questions/32894097/how-do-i-use-qt-in-my-visual-studio-2015-projects
-> **How to setup Qt and openCV on Windows**
-https://wiki.qt.io/How_to_setup_Qt_and_openCV_on_Windows
-> search tag **link qt to visual studio 2015**
+Into our `lib` folder I will create a folder called `3rdParty` and inside it I will paste the folder located at: 
+`D:\opencv-master\build\vs_15_2017\3rdparty\lib\Debug`
 
 ### **step 15** Create `OPENCV_DIR` enviroment variable
 
@@ -186,13 +197,90 @@ Go the VC++Directories and add the path to your OpenCV `include` and `lib` direc
 
 ![enter image description here](https://i.imgur.com/KolMCJe.png)
 
+	VC++ Directories
+		Include Directories
+			$(OPENCV_DIR)include
+		Library Directories
+			$(OPENCV_DIR)lib\Debug
+			$(OPENCV_DIR)lib\3rdParty\Debug
+			$(QTDIR)\qtbase\lib
+
 Now let´s tell the `linker` what libraries can `link`at compile-time.
 
 ![enter image description here](https://i.imgur.com/qtvVLNa.png)
 
-The next is the exact list of libraries you must to link for run the hello world opencv program.
+The next is the exact list of libraries you must to link for run the hello world opencv program (YOU ONLY WILL BE ABLE TO READ `.bmp` IMAGES FOR MORE FUNCTIONALITY READ **Step 18**).
 
-# [Write list of needed libraries for run hello_opencv]
+	opencv_core331d.lib
+	opencv_highgui331d.lib
+	opencv_imgcodecs331d.lib
+	opencv_imgproc331d.lib
+	zlibd.lib
+	Qt5Cored.lib
+	Qt5Guid.lib
+	Qt5Testd.lib
+	Qt5Widgetsd.lib
+
+### **step 18** More functionality
+
+For get a quasi **complete build of opencv** you could generate the next OpenCV solution:
+
+**Download dependencies:** and paste them into your `opencv/dep` created folder.
+	Eigen (Eigen 3.3.4)
+		http://eigen.tuxfamily.org/index.php?title=Main_Page
+	OpenEXR (openexr-2.2.1.tar.gz)
+		http://www.openexr.com/downloads.html
+
+**Check only the following options:** What is not mentioned here should be unchecked (just modify the groups mentioned).
+
+	WITH:
+		WITH_1394
+		WITH_DIRECTX
+		WITH_DSSHOW
+		WITH_EIGEN
+		WITH_GSTREAMER
+		WITH_IPP
+		WITH_ITT
+		WITH_JASPER
+		WITH_JPEG
+		WITH_LAPACK
+		WITH_OPENEXR
+		WITH_OPENMP
+		WITH_PNG		
+		WITH_QT
+		WITH_TIFF
+	
+	ENABLE:
+		ENABLE_PRECOMPILED_HEADERS
+		ENABLE_SOLUTION_FOLDERS
+		
+	BUILD:	
+		BUILD_IPP_IW
+		BUILD_ITT
+		BUILD_JASPER
+		BUILD_JPEG
+		BUILD_OPENEXR
+		BUILD_PNG
+		BUILD_TIFF
+		BUILD_ZLIB
+		BUILD_opencv_apps
+		BUILD_opencv_calib3d
+		BUILD_opencv_core
+		BUILD_opencv_features2d
+		BUILD_opencv_flann
+		BUILD_opencv_highgui
+		BUILD_opencv_imgcodecs
+		BUILD_opencv_imgproc
+		BUILD_opencv_ml
+		BUILD_opencv_objdetect
+		BUILD_opencv_photo
+		BUILD_opencv_shape
+		BUILD_opencv_stitching
+		BUILD_opencv_superres
+		BUILD_opencv_ts
+		BUILD_opencv_video
+		BUILD_opencv_videoio
+		BUILD_opencv_videostab
 
 # About blockDim and gridDim
 

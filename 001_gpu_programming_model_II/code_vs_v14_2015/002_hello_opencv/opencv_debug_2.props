@@ -4,11 +4,12 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <IncludePath>$(OPENCV_DIR)include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(OPENCV_DIR)lib\Debug;$(OPENCV_DIR)lib\3rdParty\Debug;$(QTDIR)\qtbase\lib;$(QTDIR)\qtbase\plugins\platforms;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(OPENCV_DIR)lib\Debug;$(OPENCV_DIR)lib\3rdParty\Debug;$(QTDIR)\qtbase\lib;$(LibraryPath)</LibraryPath>
+    <_PropertySheetDisplayName>opencv_debug_extended</_PropertySheetDisplayName>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>
-      <AdditionalDependencies>opencv_calib3d331d.lib;opencv_core331d.lib;opencv_features2d331d.lib;opencv_flann331d.lib;opencv_highgui331d.lib;opencv_imgcodecs331d.lib;opencv_imgproc331d.lib;opencv_ml331d.lib;opencv_objdetect331d.lib;opencv_photo331d.lib;opencv_shape331d.lib;opencv_stitching331d.lib;opencv_superres331d.lib;opencv_ts331d.lib;opencv_video331d.lib;opencv_videoio331d.lib;opencv_videostab331d.lib;IlmImfd.lib;ippiwd.lib;ippicvmt.lib;ittnotifyd.lib;libjasperd.lib;libjpegd.lib;libpngd.lib;libtiffd.lib;zlibd.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5Testd.lib;Qt5Widgetsd.lib;qdirect2d.lib;qdirect2dd.lib;qminimal.lib;qminimald.lib;qoffscreen.lib;qoffscreend.lib;qwindows.lib;qwindowsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opencv_calib3d331d.lib;opencv_core331d.lib;opencv_features2d331d.lib;opencv_flann331d.lib;opencv_highgui331d.lib;opencv_imgcodecs331d.lib;opencv_imgproc331d.lib;opencv_ml331d.lib;opencv_objdetect331d.lib;opencv_photo331d.lib;opencv_shape331d.lib;opencv_stitching331d.lib;opencv_superres331d.lib;opencv_ts331d.lib;opencv_video331d.lib;opencv_videoio331d.lib;opencv_videostab331d.lib;IlmImfd.lib;ippiwd.lib;ippicvmt.lib;ittnotifyd.lib;libjasperd.lib;libjpegd.lib;libpngd.lib;libtiffd.lib;zlibd.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5Testd.lib;Qt5Widgetsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup />
