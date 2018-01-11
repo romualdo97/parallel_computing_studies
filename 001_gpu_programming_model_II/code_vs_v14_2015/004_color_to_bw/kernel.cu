@@ -31,17 +31,13 @@
 //You should fill in the kernel as well as set the block and grid sizes
 //so that the entire image is processed.
 
-#include "cuda_runtime.h"
-#include "device_launch_parameters.h"
-
+#include "kernel.cuh"
 #include <stdio.h>
 
-void your_rgba_to_greyscale(uchar4 const * const h_rgbaImage, uchar4 * const d_rgbaImage,
-								unsigned char * const d_greyImage, size_t numRows, size_t numCols);
 
 __global__ void rgba_to_greyscale_kernel(uchar4 const * const rgbaImage,
 										unsigned char * const greyImage,
-										int numRows, int numCols)
+										int numCols)
 {
 	//TODO
 	//Fill in the kernel to convert from color to greyscale
@@ -55,22 +51,54 @@ __global__ void rgba_to_greyscale_kernel(uchar4 const * const rgbaImage,
 	//First create a mapping from the 2D block and grid locations
 	//to an absolute 2D location in the image, then use that to
 	//calculate a 1D offset
-    int idx = threadIdx.x + blockIdx.x * blockDim.x;
-	//int id
-    //c[i] = a[i] + b[i];
-	*(greyImage + idx) = rgbaImage->x * .299f + rgbaImage->y * .589f + rgbaImage->z * .114f;
+
+	// http://users.wfu.edu/choss/CUDA/docs/Lecture%205.pdf
+	// full global thread ID in X and Y dimensions
+    int col = threadIdx.x + blockIdx.x * blockDim.x; // x
+	int row = threadIdx.y + blockIdx.y * blockDim.y; // y
+
+	// ACCESSING MATRICES IN LINEAR MEMORY
+	// • we cannot not use two-dimensional indices (e.g. A[row][column])
+	// to access matrices
+	// • We will need to know how the matrix is laid out in memory and
+	// then compute the distance from the beginning of the matrix
+	// • C uses row-major order --- rows are stored one after the
+	// other in memory, i.e.row 0 then row 1 etc.
+	int index = numCols * row + col; // W * row + col
+	uchar4 const * texel = (rgbaImage + index);
+	*(greyImage + index) = texel->x * .299f + texel->y * .587f + texel->z * .114f;
 }
 
 void your_rgba_to_greyscale(uchar4 const * const h_rgbaImage, uchar4 * const d_rgbaImage,
 	unsigned char * const d_greyImage, size_t numRows, size_t numCols)
 {
+	std::cout << "\nLAUNCHING KERNEL:" << std::endl;
+
+
+	int const BLOCKS = 32;
+	int const X_THREADS_PER_BLOCK = numCols / BLOCKS;
+	int const Y_THREADS_PER_BLOCK = numRows / BLOCKS;
+
+	std::cout << "\t// remember max number of threads per block is 1024 in total, no in each dimension" << std::endl;
+	std::cout << "\t- Num of blocks: " << BLOCKS << "x" << BLOCKS << std::endl;
+	std::cout << "\t- Threads per block in X: " << X_THREADS_PER_BLOCK << std::endl;
+	std::cout << "\t- Threads per block in Y: " << Y_THREADS_PER_BLOCK << std::endl;
+	std::cout << "\t- Total threads per block: " << X_THREADS_PER_BLOCK * Y_THREADS_PER_BLOCK << std::endl;
 
 	//You must fill in the correct sizes for the blockSize and gridSize
 	//currently only one block with one thread is being launched
-	const dim3 blockSize(1, 1, 1);		//TODO
-	const dim3 gridSize(512, 1, 1);		//TODO
-	//rgba_to_greyscale_kernel <<<gridSize, blockSize>>> (d_rgbaImage, d_greyImage, numRows, numCols);
+	const dim3 blockSize(X_THREADS_PER_BLOCK, Y_THREADS_PER_BLOCK, 1);		// How many threads per block?
+	const dim3 gridSize(BLOCKS, BLOCKS, 1);											// How many blocks? (grid of blocks)
+	rgba_to_greyscale_kernel <<<gridSize, blockSize>>> (d_rgbaImage, d_greyImage, numCols);
 
+	// Check for any errors launching the kernel
+	cudaError_t cudaStatus = cudaGetLastError();
+	if (cudaStatus != cudaSuccess)
+	{
+		std::cerr << "\t- rgba_to_greyscale_kernel launch failed: " << cudaGetErrorString(cudaStatus) << std::endl;
+		return;
+	}
+	std::cout << "\t- Kernel launched succesfully" << std::endl;
 	//cudaDeviceSynchronize(); checkCudaErrors(cudaGetLastError());
 }
 
